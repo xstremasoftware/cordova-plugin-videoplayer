@@ -131,17 +131,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setOnDismissListener(this);
         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
 
-        //Try and hide the navigation bad
-        static int ui_flags =
-        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                View.SYSTEM_UI_FLAG_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-        // Set full-sreen mode (immersive sticky):
-        dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);
-        
+       
         
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
