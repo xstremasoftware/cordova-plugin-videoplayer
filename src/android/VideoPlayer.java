@@ -130,7 +130,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
-
+	/* Get phonegap build error when addind this
        dialog.getWindow().getDecorView().setSystemUiVisibility(
 				View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
 				| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -138,7 +138,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				//| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
 			);		
-        
+        */
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
