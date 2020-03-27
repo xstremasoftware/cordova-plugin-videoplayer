@@ -139,6 +139,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
 			);		
         */
+	    View v = getWindow().getDecorView();
+        v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -200,10 +207,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             try {
                 int scalingMode = options.getInt("scalingMode");
                 switch (scalingMode) {
-//                     case MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING:
-//                         Log.d(LOG_TAG, "setVideoScalingMode VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING");
-//                         player.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-//                         break;
+                    case MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING:
+                        Log.d(LOG_TAG, "setVideoScalingMode VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING");
+                        player.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+                        break;
                     default:
                         Log.d(LOG_TAG, "setVideoScalingMode VIDEO_SCALING_MODE_SCALE_TO_FIT");
                         player.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT);
