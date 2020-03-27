@@ -139,13 +139,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
 			);		
         */
-	View v = dialog.getWindow().getDecorView();
+	/*View v = dialog.getWindow().getDecorView();
+
         v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+	*/
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
