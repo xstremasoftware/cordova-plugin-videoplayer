@@ -124,28 +124,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-//         dialog = new Dialog(cordova.getActivity(), android.R.style.Theme);
-	dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar_Fullscreen);
 // 	dialog = new Dialog(cordova.getActivity(), android.R.style.full_screen_dialog);
-        dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setOnDismissListener(this);
-        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
-// 	dialog.getWindow().setFlags(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-	
-        // Main container layout
-//         LinearLayout main = new LinearLayout(cordova.getActivity());
-//         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-//         main.setOrientation(LinearLayout.VERTICAL);
-//         main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
-//         main.setVerticalGravity(Gravity.CENTER_VERTICAL);
-	
+//         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+//         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//         dialog.setCancelable(true);
+//         dialog.setOnDismissListener(this);
+//         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
 
 	videoView = new VideoView(cordova.getActivity());
-//         main.addView(videoView);
-        
-       
+	    
         player = new MediaPlayer();
         player.setOnPreparedListener(this);
         player.setOnCompletionListener(this);
@@ -233,13 +220,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
         });
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.setContentView(videoView);
-        dialog.show();
-        dialog.getWindow().setAttributes(lp);
+//         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//         lp.copyFrom(dialog.getWindow().getAttributes());
+//         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//         dialog.setContentView(videoView);
+//         dialog.show();
+//         dialog.getWindow().setAttributes(lp);
     }
 
     @Override
