@@ -124,32 +124,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme);
-// 	dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+//         dialog = new Dialog(cordova.getActivity(), android.R.style.Theme);
+	dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
 // 	dialog = new Dialog(cordova.getActivity(), android.R.style.full_screen_dialog);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
-	/* Get phonegap build error when addind this
-       dialog.getWindow().getDecorView().setSystemUiVisibility(
-				View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-				| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-				//| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-				//| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-			);		
-        */
-	/*View v = dialog.getWindow().getDecorView();
-
-        v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-	*/
+//         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+	dialog.getWindow().setFlags(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+	
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
