@@ -125,7 +125,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
 //         dialog = new Dialog(cordova.getActivity(), android.R.style.Theme);
-	dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+	dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar_Fullscreen);
 // 	dialog = new Dialog(cordova.getActivity(), android.R.style.full_screen_dialog);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
