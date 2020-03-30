@@ -143,7 +143,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
 
 	videoView = new VideoView(cordova.getActivity());
-	getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); 
+	videoView.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); 
 // 	videoView.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); 
         // videoView.setVideoURI(uri);
         // videoView.setVideoPath(path);
