@@ -131,12 +131,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-//         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
 // 	dialog.getWindow().setFlags(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
-	main.getLayoutInflator().inflate(R.layout.full_screen,null);
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         main.setOrientation(LinearLayout.VERTICAL);
         main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
@@ -145,7 +144,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
         videoView = new VideoView(cordova.getActivity());
         videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-	    
+	videoView.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULSCREEN);   
         // videoView.setVideoURI(uri);
         // videoView.setVideoPath(path);
         main.addView(videoView);
