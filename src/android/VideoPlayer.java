@@ -136,10 +136,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
+	main.getLayoutInflator().inflate(R.layout.full_screen,null);
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         main.setOrientation(LinearLayout.VERTICAL);
         main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
         main.setVerticalGravity(Gravity.CENTER_VERTICAL);
+	
 
         videoView = new VideoView(cordova.getActivity());
         videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -238,10 +240,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
-//         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-       lp.width = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        lp.height = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.setContentView(main);
         dialog.show();
         dialog.getWindow().setAttributes(lp);
