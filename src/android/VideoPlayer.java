@@ -37,7 +37,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     private CallbackContext callbackContext = null;
 
-    private Dialog dialog;
+    // private Dialog dialog;
 
     private VideoView videoView;
 
@@ -87,13 +87,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             return true;
         }
         else if (action.equals("close")) {
-            if (dialog != null) {
+            // if (dialog != null) {
                 if(player.isPlaying()) {
                     player.stop();
                 }
                 player.release();
-                dialog.dismiss();
-            }
+                // dialog.dismiss();
+            // }
 
             if (callbackContext != null) {
                 PluginResult result = new PluginResult(PluginResult.Status.OK);
@@ -237,7 +237,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             mp.stop();
         }
         mp.release();
-        dialog.dismiss();
+        // dialog.dismiss();
         return false;
     }
 
@@ -250,7 +250,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     public void onCompletion(MediaPlayer mp) {
         Log.d(LOG_TAG, "MediaPlayer completed");
         mp.release();
-        dialog.dismiss();
+        // dialog.dismiss();
     }
 
     @Override
