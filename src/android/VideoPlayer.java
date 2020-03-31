@@ -13,6 +13,7 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.Window;
@@ -43,6 +44,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     private MediaPlayer player;
 
+    static int ui_flags =
+        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
     /**
      * Executes the request and returns PluginResult.
      *
@@ -131,13 +139,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setOnDismissListener(this);
         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
 	/* Get phonegap build error when addind this
-       dialog.getWindow().getDecorView().setSystemUiVisibility(
-				View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-				| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-				//| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-				//| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-			);		
+       dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);		
         */
         // Main container layout
         LinearLayout main = new LinearLayout(cordova.getActivity());
