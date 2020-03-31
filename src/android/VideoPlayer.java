@@ -29,8 +29,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class VideoPlayer extends CordovaPlugin
-        implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
+public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
 
     protected static final String LOG_TAG = "VideoPlayer";
 
@@ -47,10 +46,10 @@ public class VideoPlayer extends CordovaPlugin
     /**
      * Executes the request and returns PluginResult.
      *
-     * @param action     The action to execute.
-     * @param args       JSONArray of arguments for the plugin.
-     * @param callbackId The callback id used when calling back into JavaScript.
-     * @return A PluginResult object with a status and message.
+     * @param action        The action to execute.
+     * @param args          JSONArray of arguments for the plugin.
+     * @param callbackId    The callback id used when calling back into JavaScript.
+     * @return              A PluginResult object with a status and message.
      */
     public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("play")) {
@@ -86,9 +85,10 @@ public class VideoPlayer extends CordovaPlugin
             callbackContext = null;
 
             return true;
-        } else if (action.equals("close")) {
+        }
+        else if (action.equals("close")) {
             if (dialog != null) {
-                if (player.isPlaying()) {
+                if(player.isPlaying()) {
                     player.stop();
                 }
                 player.release();
@@ -108,8 +108,8 @@ public class VideoPlayer extends CordovaPlugin
     }
 
     /**
-     * Removes the "file://" prefix from the given URI string, if applicable. If the
-     * given URI string doesn't have a "file://" prefix, it is returned unchanged.
+     * Removes the "file://" prefix from the given URI string, if applicable.
+     * If the given URI string doesn't have a "file://" prefix, it is returned unchanged.
      *
      * @param uriString the URI string to operate on
      * @return a path without the "file://" prefix
@@ -124,15 +124,35 @@ public class VideoPlayer extends CordovaPlugin
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-        dialog = new Dialog(cordova.getActivity(), android.R.style.full_screen_dialog);
+        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-//         dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+	/* Get phonegap build error when addind this
+       dialog.getWindow().getDecorView().setSystemUiVisibility(
+				View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
+				| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+				//| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+				//| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+				| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+			);		
+        */
+        // Main container layout
+        LinearLayout main = new LinearLayout(cordova.getActivity());
+        main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        main.setOrientation(LinearLayout.VERTICAL);
+        main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
+        main.setVerticalGravity(Gravity.CENTER_VERTICAL);
 
         videoView = new VideoView(cordova.getActivity());
-
+        videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        // videoView.setVideoURI(uri);
+        // videoView.setVideoPath(path);
+        main.addView(videoView);
+        
+       
         player = new MediaPlayer();
         player.setOnPreparedListener(this);
         player.setOnCompletionListener(this);
@@ -151,7 +171,8 @@ public class VideoPlayer extends CordovaPlugin
                 callbackContext = null;
                 return;
             }
-        } else {
+        }
+        else {
             try {
                 player.setDataSource(path);
             } catch (Exception e) {
@@ -175,7 +196,7 @@ public class VideoPlayer extends CordovaPlugin
             return;
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             try {
                 int scalingMode = options.getInt("scalingMode");
                 switch (scalingMode) {
@@ -211,22 +232,20 @@ public class VideoPlayer extends CordovaPlugin
                     callbackContext = null;
                 }
             }
-
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 player.release();
             }
-
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
         });
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.setContentView(videoView);
+
+        dialog.setContentView(main);
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
@@ -234,7 +253,7 @@ public class VideoPlayer extends CordovaPlugin
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         Log.e(LOG_TAG, "MediaPlayer.onError(" + what + ", " + extra + ")");
-        if (mp.isPlaying()) {
+        if(mp.isPlaying()) {
             mp.stop();
         }
         mp.release();
