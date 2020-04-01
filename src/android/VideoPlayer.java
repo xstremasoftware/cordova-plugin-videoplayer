@@ -141,8 +141,8 @@ public class VideoPlayer extends CordovaPlugin
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-        dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);
-        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+        // dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);
+        // dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
 
         // Main container layout
         final LinearLayout main = new LinearLayout(cordova.getActivity());
@@ -249,12 +249,12 @@ public class VideoPlayer extends CordovaPlugin
 
         final WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        lp.height = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 
         dialog.setContentView(main);
         dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);
-        // dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
