@@ -141,10 +141,8 @@ public class VideoPlayer extends CordovaPlugin
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-        // dialog.getWindow().getDecorView().setSystemUiVisibility(ui_flags);
-        // dialog.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN);
-
-        // Main container layout
+       
+       // Main container layout
         final LinearLayout main = new LinearLayout(cordova.getActivity());
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         main.setOrientation(LinearLayout.VERTICAL);
